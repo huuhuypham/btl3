@@ -601,7 +601,6 @@ class Boss(pygame.sprite.Sprite):
 
         # Debug vision rect (chỉ khi còn sống)
         if self.alive : # SHOW_DEBUG là biến global bạn có thể định nghĩa
-            print(bar_x)
             vision_screen_rect = self.vision.move(screen_scroll, 0)
             pygame.draw.rect(surface, (0, 0, 255), vision_screen_rect, 2)
     
@@ -709,7 +708,6 @@ class World():
                         exit_group.add(exit)
 
                 elif tile == 50 and not boss_created:
-                        print("bosss")
                         img = img_list_boss[5][0]
                         img_rect = img.get_rect()
                         img_rect.x = x * TILE_SIZE
