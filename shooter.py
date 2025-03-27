@@ -46,8 +46,6 @@ shot_fx = pygame.mixer.Sound('audio/shot.wav')
 shot_fx.set_volume(0.05)
 grenade_fx = pygame.mixer.Sound('audio/grenade.wav')
 grenade_fx.set_volume(0.05)
-screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-screen_width, screen_height = screen.get_size()
 
 start_img = pygame.image.load('img/start_btn.png').convert_alpha()
 setting_img = pygame.image.load('img/option2_btn.png').convert_alpha()
@@ -71,16 +69,10 @@ standard_size = (start_img.get_width(), start_img.get_height())
 
 SETTING_BG = (180, 220, 255)  # Xanh nhạt dịu
 
-# Tính toán kích thước cho mỗi hình ảnh
-col_width = screen_width // 2
-row_height = screen_height // 2
-label_size = (col_width - 40, row_height - 40)
-
-# Điều chỉnh kích thước hình ảnh
-doublejump_scaled = pygame.transform.scale(doublejump_img, label_size)
-sound_scaled = pygame.transform.scale(sound_img, label_size)
-on_scaled = pygame.transform.scale(on_img, label_size)
-off_scaled = pygame.transform.scale(off_img, label_size)
+doublejump_img = pygame.transform.scale(doublejump_img, setting_button_size)
+sound_img = pygame.transform.scale(sound_img, setting_button_size)
+on_img = pygame.transform.scale(on_img, setting_button_size)
+off_img = pygame.transform.scale(off_img, setting_button_size)
 
 
 
@@ -1147,14 +1139,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        if event.type == pygame.MOUSEBUTTONDOWN and show_setting_menu:
-            mx, my = pygame.mouse.get_pos()
-            if mx > SCREEN_WIDTH // 2:
-                if my < SCREEN_HEIGHT // 2:
-                    double_jump_on = not double_jump_on
-                else:
-                    sound_on = not sound_on
-
+            
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
                 moving_left = True
